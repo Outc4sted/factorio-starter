@@ -1,0 +1,17 @@
+services:
+  factorio:
+    build:
+      context: .
+      args:
+        SAVE_FILE: Klendathu.zip
+    ports:
+      - "34197:34197/udp"
+    volumes:
+      - ./server/server-settings.json:/opt/factorio/data/server-settings.json:ro
+      - ./server/saves:/opt/factorio/saves
+      - ./server/mods:/opt/factorio/mods
+      - factorio-data:/opt/factorio
+    restart: unless-stopped
+
+volumes:
+  factorio-data:
